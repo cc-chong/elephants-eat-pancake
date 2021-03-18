@@ -15,7 +15,7 @@ namespace DeliveryCostCalculator
             _parcelLimits = parcelLimits;
         }
 
-        public OrderCost Calculate(List<Parcel> parcels)
+        public OrderCost Calculate(List<Parcel> parcels, bool speedyShippingSelected)
         {
             var orderCost = new OrderCost();
             foreach (var parcel in parcels)
@@ -29,8 +29,11 @@ namespace DeliveryCostCalculator
                 };
                 orderCost.ParcelCosts.Add(parcelCost);
             }
-            
-            orderCost.TotalCost = orderCost.ParcelCosts.Sum(parcel => parcel.Cost);
+
+            decimal subtotal = orderCost.ParcelCosts.Sum(parcel => parcel.Cost);
+
+            orderCost.SpeedyShippingFee = speedyShippingSelected ? subtotal : 0.0m;
+            orderCost.TotalCost = subtotal + orderCost.SpeedyShippingFee;
             
             return orderCost;
         }

@@ -11,6 +11,9 @@ namespace DeliveryCostCalculator.Models
 
         public List<ParcelCost> ParcelCosts { get; set; }
 
+        public decimal SpeedyShippingFee { get; set; }
+
         public decimal TotalCost { get; set; }
+
     }
 }
