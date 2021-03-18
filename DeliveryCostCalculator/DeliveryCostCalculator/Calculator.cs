@@ -23,9 +23,9 @@ namespace DeliveryCostCalculator
                 var parcelType = _parcelLimits.Where(type => type.FitParcelType(parcel)).OrderBy(type => type.Price).First();
                 var parcelCost = new ParcelCost()
                 {
-                    Parcel = parcel, 
+                    Parcel = parcel,
                     ParcelType = parcelType.Name,
-                    Cost = parcelType.Price
+                    Cost = parcelType.GetDeliveryCost(parcel)
                 };
                 orderCost.ParcelCosts.Add(parcelCost);
             }

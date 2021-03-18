@@ -10,6 +10,9 @@ namespace DeliveryCostCalculator.ParcelTypes
 
         public override decimal Price => 25.0m;
 
+        public override decimal WeightLimit => 10.0m;
+
+
         public override bool FitParcelType(Parcel parcel)
         {
             return parcel.Length >= DimensionLimit || parcel.Width >= DimensionLimit || parcel.Height >= DimensionLimit;

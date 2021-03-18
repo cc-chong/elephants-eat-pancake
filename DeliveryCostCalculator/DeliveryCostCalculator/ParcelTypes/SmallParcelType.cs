@@ -7,5 +7,8 @@
         public override decimal DimensionLimit => 10.0m;
 
         public override decimal Price => 3.0m;
+
+        public override decimal WeightLimit => 1.0m;
+
     }
 }

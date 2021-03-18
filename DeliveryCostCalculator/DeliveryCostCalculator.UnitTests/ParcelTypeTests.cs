@@ -44,5 +44,20 @@ namespace DeliveryCostCalculator.UnitTests
             // Act & Assert
             parcels.Select(x => extraLargeParcelType.FitParcelType(x).Should().BeFalse());
         }
+
+        [TestMethod]
+        public void ParcelType_GetDeliveryCost_CostShouldMeetExpectedValues()
+        {
+            var extraLargeParcelType = new ExtraLargeParcelType();
+            var parcelCosts = new List<ParcelCost>()
+            {
+                new ParcelCost{ Parcel = new Parcel{ Height = 100.0m, Weight = 10.0m}, Cost = 25.0m},
+                new ParcelCost{ Parcel = new Parcel{ Height = 100.0m, Weight = 15.3m}, Cost = 37.0m}
+            };
+
+
+            // Act & Assert
+            parcelCosts.Select(parcelCost => extraLargeParcelType.GetDeliveryCost(parcelCost.Parcel).Should().Be(parcelCost.Cost));
+        }
     }
 }
